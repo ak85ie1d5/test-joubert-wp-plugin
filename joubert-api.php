@@ -13,7 +13,22 @@
 
 
 
-
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+add_shortcode('joubert_api', 'joubertApiShortcode');
+function joubertApiShortcode($atts) {
 
+    if (isset($atts['metal']) && in_array($atts['metal'], ["XAU","XAG","XPT","XPD"])) {
+        wp_enqueue_script( 'chart-js', plugins_url( '/assets/js/chart.js' , __FILE__ ), '', '4.4.1', true );
+        wp_enqueue_script( 'joubert-api-chart', plugins_url( '/assets/js/joubert-api-chart.js' , __FILE__ ), '', '1.0.0', true );
+
+        ob_start(); ?>
+        <div>
+            <canvas id="joubert-api-chart">Loading...</canvas>
+        </div>
+
+        <?php return preg_replace('~>\\s+<~m', '><', ob_get_clean());
+    } else {
+        return null;
+    }
+}
