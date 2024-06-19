@@ -1,0 +1,15 @@
+.joubert-api-name {
+  font-weight: bold;
+}
+
+.joubert-api-price {
+  margin: 0 5px;
+}
+
+.joubert-api-ch-positive {
+  color: green;
+}
+
+.joubert-api-ch-negative {
+  color: red;
+}
